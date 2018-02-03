@@ -11,17 +11,11 @@ export default class Table extends Component {
     render() {
 
         const Rows = [];
-        let counter = 1;
-        for (let i = 0; i < this.props.periods; i++) {
-            let period = i + 1;
-
-            for (let j = 0; j < this.props.accruals; j++) {
-                let accrual = j + 1;
-                let summ = this.props.summ * Math.pow((1 + (this.props.rate / 100) / this.props.accruals ), accrual * period);
-                Rows.push(<TableRow key={counter} counter={counter} summ={parseFloat(summ).toFixed(this.props.accuracy)} />);
-                counter++;
-            }
-
+        const rows = this.props.periods * this.props.accruals;
+        for (let i = 0; i < rows; i++) {
+            let counter = i + 1;
+            let summ = this.props.summ * Math.pow((1 + (this.props.rate / 100) / this.props.accruals ),  counter);
+            Rows.push(<TableRow key={counter} counter={counter} summ={parseFloat(summ).toFixed(this.props.accuracy)} />);
         }
 
         return (
