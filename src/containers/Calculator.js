@@ -9,53 +9,45 @@ import PropTypes from 'prop-types';
 class Calculator extends Component {
 
   static propTypes = {
-    state: PropTypes.shape({
-      summ: PropTypes.number.isRequired,
-      rate: PropTypes.number.isRequired,
-      accruals: PropTypes.number.isRequired,
-      periods: PropTypes.number.isRequired,
-      accuracy: PropTypes.number.isRequired,
-    })
+    dispatch: PropTypes.func.isRequired,
+    summ: PropTypes.number.isRequired,
+    rate: PropTypes.number.isRequired,
+    accruals: PropTypes.number.isRequired,
+    periods: PropTypes.number.isRequired,
+    accuracy: PropTypes.number.isRequired
   };
 
   static defaultProps = {
-    state: {
-      summ: 0,
-      rate: 0,
-      accruals: 0,
-      periods: 0,
-      accuracy: 0
-    }
+    summ: 0,
+    rate: 0,
+    accruals: 0,
+    periods: 0,
+    accuracy: 0
   };
 
   render() {
-    const {dispatch, state} = this.props;
+    const {dispatch, ...tableProps} = this.props;
 
-    const changeSumm = bindActionCreators(CalculatorActionCreators.changeSumm, dispatch);
-    const changeRate = bindActionCreators(CalculatorActionCreators.changeRate, dispatch);
-    const changeAccruals = bindActionCreators(CalculatorActionCreators.changeAccruals, dispatch);
-    const changePeriods = bindActionCreators(CalculatorActionCreators.changePeriods, dispatch);
-    const changeAccuracy = bindActionCreators(CalculatorActionCreators.changeAccuracy, dispatch);
+    const onChangeSumm = bindActionCreators(CalculatorActionCreators.onChangeSumm, dispatch);
+    const onChangeRate = bindActionCreators(CalculatorActionCreators.onChangeRate, dispatch);
+    const onChangeAccruals = bindActionCreators(CalculatorActionCreators.onChangeAccruals, dispatch);
+    const onChangePeriods = bindActionCreators(CalculatorActionCreators.onChangePeriods, dispatch);
+    const onChangeAccuracy = bindActionCreators(CalculatorActionCreators.onChangeAccuracy, dispatch);
 
+    const formProps = {...this.props, onChangeSumm, onChangeRate, onChangeAccruals, onChangePeriods, onChangeAccuracy};
+    
     return (
       <div className="calculator">
         <Form
-          state={state}
-          changeSumm={changeSumm}
-          changeRate={changeRate}
-          changeAccruals={changeAccruals}
-          changePeriods={changePeriods}
-          changeAccuracy={changeAccuracy}
+          {...formProps}
         />
-        <Table {...state} />
+        <Table {...tableProps} />
       </div>
     );
   }
 
 };
 
-const mapStateToProps = state => {
-  return {state}
-};
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(Calculator);

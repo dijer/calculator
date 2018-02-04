@@ -9,18 +9,17 @@ export default class Form extends Component {
     }
 
     static propTypes = {
-        state: PropTypes.shape({
-            summ: PropTypes.number.isRequired,
-            rate: PropTypes.number.isRequired,
-            accruals: PropTypes.number.isRequired,
-            periods: PropTypes.number.isRequired,
-            accuracy: PropTypes.number.isRequired,
-        }),
-        changeSumm: PropTypes.func.isRequired,
-        changeRate: PropTypes.func.isRequired,
-        changeAccruals: PropTypes.func.isRequired,
-        changePeriods: PropTypes.func.isRequired,
-        changeAccuracy: PropTypes.func.isRequired
+        dispatch: PropTypes.func.isRequired,
+        summ: PropTypes.number.isRequired,
+        rate: PropTypes.number.isRequired,
+        accruals: PropTypes.number.isRequired,
+        periods: PropTypes.number.isRequired,
+        accuracy: PropTypes.number.isRequired,
+        onChangeSumm: PropTypes.func.isRequired,
+        onChangeRate: PropTypes.func.isRequired,
+        onChangeAccruals: PropTypes.func.isRequired,
+        onChangePeriods: PropTypes.func.isRequired,
+        onChangeAccuracy: PropTypes.func.isRequired
     };
 
     handleChangeInput(e, callback) {
@@ -28,13 +27,17 @@ export default class Form extends Component {
     }
 
     render() {
+
+        const {summ, rate, accruals, periods, accuracy, onChangeSumm, onChangeRate, onChangeAccruals, onChangePeriods, onChangeAccuracy} = this.props;
+        const haldeChangeInput = this.handleChangeInput;
+
         return (
             <form className="calculator__form">
-                <label>Сумма: <input type="number" min="0" step="0.01" defaultValue={this.props.state.summ} onChange={ (e) => this.handleChangeInput(e, this.props.changeSumm) } placeholder="Сумма"/></label>
-                <label>Ставка, %: <input type="number" min="0" step="0.01" defaultValue={this.props.state.rate} onChange={ (e) => this.handleChangeInput(e, this.props.changeRate) } placeholder="Ставка" /></label>
-                <label>Начислений: <input type="number" min="0" defaultValue={this.props.state.accruals} onChange={ (e) => this.handleChangeInput(e, this.props.changeAccruals) } placeholder="Начислений" /></label>
-                <label>Периодов: <input type="number" min="0" max="5" defaultValue={this.props.state.periods} onChange={ (e) => this.handleChangeInput(e, this.props.changePeriods) } placeholder="Периодов" /></label>
-                <label>Знаков после запятой: <input type="range" min="0" max="5" defaultValue={this.props.state.accuracy} onChange={ (e) => this.handleChangeInput(e, this.props.changeAccuracy) } placeholder="Знаков после запятой" /></label>
+                <label>Сумма: <input type="number" min="0" step="0.01" defaultValue={summ} onChange={ (e) => haldeChangeInput(e, onChangeSumm) } placeholder="Сумма"/></label>
+                <label>Ставка, %: <input type="number" min="0" step="0.01" defaultValue={rate} onChange={ (e) => haldeChangeInput(e, onChangeRate) } placeholder="Ставка" /></label>
+                <label>Начислений: <input type="number" min="0" defaultValue={accruals} onChange={ (e) => haldeChangeInput(e, onChangeAccruals) } placeholder="Начислений" /></label>
+                <label>Периодов: <input type="number" min="0" max="5" defaultValue={periods} onChange={ (e) => haldeChangeInput(e, onChangePeriods) } placeholder="Периодов" /></label>
+                <label>Знаков после запятой: <input type="range" min="0" max="5" defaultValue={accuracy} onChange={ (e) => haldeChangeInput(e, onChangeAccuracy) } placeholder="Знаков после запятой" /></label>
             </form>
         );
     }

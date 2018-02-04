@@ -8,7 +8,8 @@ import './Calculator.css';
 import Calculator from './containers/Calculator';
 
 const store = createStore(
-    CalculatorReducer
+    CalculatorReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 render(

@@ -6,27 +6,26 @@ export default class Table extends Component {
 
     constructor(props) {
         super(props);
-        this.state = props.state;
+        this.props = props;
     }
 
     static propTypes = {
-        state: PropTypes.shape({
-            summ: PropTypes.number.isRequired,
-            rate: PropTypes.number.isRequired,
-            accruals: PropTypes.number.isRequired,
-            periods: PropTypes.number.isRequired,
-            accuracy: PropTypes.number.isRequired,
-        })
+        summ: PropTypes.number.isRequired,
+        rate: PropTypes.number.isRequired,
+        accruals: PropTypes.number.isRequired,
+        periods: PropTypes.number.isRequired,
+        accuracy: PropTypes.number.isRequired,
     };
 
     render() {
 
+        const {summ, rate, accruals, periods, accuracy} = this.props;
         const Rows = [];
-        const rows = this.props.periods * this.props.accruals;
+        const rows = periods * accruals;
         for (let i = 0; i < rows; i++) {
             let counter = i + 1;
-            let summ = this.props.summ * Math.pow((1 + (this.props.rate / 100) / this.props.accruals ),  counter);
-            Rows.push(<TableRow key={counter} counter={counter} summ={Number(summ.toFixed(this.props.accuracy))} />);
+            let accruedSumm = summ * Math.pow((1 + (rate / 100) / accruals ),  counter);
+            Rows.push(<TableRow key={counter} counter={counter} summ={Number(accruedSumm.toFixed(accuracy))} />);
         }
 
         return (

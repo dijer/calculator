@@ -1,36 +1,15 @@
 import * as CalculatorActionTypes from '../actiontypes/calculator';
 
-export const changeSumm = value => {
-    return {
-        type: CalculatorActionTypes.CHANGE_SUMM,
-        value
-    }
+const onChangeHandler = (type, value) => {
+    return {type, value};
 };
 
-export const changeRate = value => {
-    return {
-        type: CalculatorActionTypes.CHANGE_RATE,
-        value
-    }
-};
+export const onChangeSumm = value => onChangeHandler(CalculatorActionTypes.CHANGE_SUMM, value);
 
-export const changeAccruals = value => {
-    return {
-        type: CalculatorActionTypes.CHANGE_ACCRUALS,
-        value
-    }
-};
+export const onChangeRate = value => onChangeHandler(CalculatorActionTypes.CHANGE_RATE, value);
 
-export const changePeriods = value => {
-    return {
-        type: CalculatorActionTypes.CHANGE_PERIODS,
-        value
-    }
-};
+export const onChangeAccruals = value => onChangeHandler(CalculatorActionTypes.CHANGE_ACCRUALS, value);
 
-export const changeAccuracy = value => {
-    return {
-        type: CalculatorActionTypes.CHANGE_ACCURACY,
-        value
-    }
-};
+export const onChangePeriods = value => onChangeHandler(CalculatorActionTypes.CHANGE_PERIODS, value);
+
+export const onChangeAccuracy = value => onChangeHandler(CalculatorActionTypes.CHANGE_ACCURACY, value);
