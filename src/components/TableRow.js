@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TableTr = props => {
 
@@ -9,6 +10,11 @@ const TableTr = props => {
         </tr>
     );
 
+}
+
+TableTr.propTypes = {
+    counter: PropTypes.number.isRequired,
+    summ: PropTypes.number.isRequired
 }
 
 export default TableTr;

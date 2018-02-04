@@ -1,19 +1,41 @@
+var webpack = require("webpack");
+var path = require("path");
+
 module.exports = {
-    devtool: 'inline-sourcemap',
-    entry: './index.js',
+    entry: './src/index.js',
     output: {
-        filename: 'bundle.js'
+      path: path.join(__dirname, 'dist/assets'),
+      filename: 'bundle.js',
+      sourceMapFilename: 'bundle.map'
     },
+    devtool: '#source-map',
     module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loaders: [
-                    'react-hot',
-                    'babel'
-                ]
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loaders: 'babel-loader',
+          query: {
+              presets: ['env', 'stage-0', 'react']
+          }
+        },
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader', {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [require('autoprefixer')]
             }
-        ]
-    }
-};
+          }]
+        }
+      ]
+    },
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
+        warnings: false,
+        mangle: true
+      })
+    ]
+  };
+  

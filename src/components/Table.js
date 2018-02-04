@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TableRow from './TableRow';
+import PropTypes from 'prop-types';
 
 export default class Table extends Component {
 
@@ -8,6 +9,16 @@ export default class Table extends Component {
         this.state = props.state;
     }
 
+    static propTypes = {
+        state: PropTypes.shape({
+            summ: PropTypes.number.isRequired,
+            rate: PropTypes.number.isRequired,
+            accruals: PropTypes.number.isRequired,
+            periods: PropTypes.number.isRequired,
+            accuracy: PropTypes.number.isRequired,
+        })
+    };
+
     render() {
 
         const Rows = [];
@@ -15,7 +26,7 @@ export default class Table extends Component {
         for (let i = 0; i < rows; i++) {
             let counter = i + 1;
             let summ = this.props.summ * Math.pow((1 + (this.props.rate / 100) / this.props.accruals ),  counter);
-            Rows.push(<TableRow key={counter} counter={counter} summ={parseFloat(summ).toFixed(this.props.accuracy)} />);
+            Rows.push(<TableRow key={counter} counter={counter} summ={Number(summ.toFixed(this.props.accuracy))} />);
         }
 
         return (
