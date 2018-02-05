@@ -9,6 +9,7 @@ const initialState = {
 };
 
 export default function Calculator(state=initialState, action) {
+    
     switch (action.type) {
         case CalculatorActionTypes.CHANGE_SUMM:
             return {

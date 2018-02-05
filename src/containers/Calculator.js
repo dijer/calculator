@@ -28,13 +28,9 @@ class Calculator extends Component {
   render() {
     const {dispatch, ...tableProps} = this.props;
 
-    const onChangeSumm = bindActionCreators(CalculatorActionCreators.onChangeSumm, dispatch);
-    const onChangeRate = bindActionCreators(CalculatorActionCreators.onChangeRate, dispatch);
-    const onChangeAccruals = bindActionCreators(CalculatorActionCreators.onChangeAccruals, dispatch);
-    const onChangePeriods = bindActionCreators(CalculatorActionCreators.onChangePeriods, dispatch);
-    const onChangeAccuracy = bindActionCreators(CalculatorActionCreators.onChangeAccuracy, dispatch);
+    const onChangeInputAction = bindActionCreators(CalculatorActionCreators.onChangeInputAction, dispatch);
 
-    const formProps = {...this.props, onChangeSumm, onChangeRate, onChangeAccruals, onChangePeriods, onChangeAccuracy};
+    const formProps = {...this.props, onChangeInputAction};
     
     return (
       <div className="calculator">

@@ -14,7 +14,7 @@ const TableTr = props => {
 
 TableTr.propTypes = {
     counter: PropTypes.number.isRequired,
-    summ: PropTypes.number.isRequired
+    summ: PropTypes.string.isRequired
 }
 
 export default TableTr;
