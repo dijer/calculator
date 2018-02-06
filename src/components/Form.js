@@ -3,12 +3,6 @@ import PropTypes from 'prop-types';
 
 export default class Form extends Component {
 
-    constructor(props) {
-        super(props);
-        const {summ, rate, accruals, periods, accuracy} = props;
-        this.state = {summ, rate, accruals, periods, accuracy};
-    }
-
     static propTypes = {
         dispatch: PropTypes.func.isRequired,
         summ: PropTypes.number.isRequired,
@@ -23,16 +17,12 @@ export default class Form extends Component {
         const name = e.target.name;
         const value = Number(e.target.value);
         const changeInputObj = {[name]: value};
-        this.setState({
-            ...this.state,
-            changeInputObj
-        });
         this.props.onUpdateFormAction(changeInputObj);
     }
 
     render() {
 
-        const {summ, rate, accruals, periods, accuracy} = this.state;
+        const {summ, rate, accruals, periods, accuracy} = this.props;
         const onChangeInputHandler = this.onChangeInputHandler.bind(this);
 
         return (
