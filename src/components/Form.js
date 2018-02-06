@@ -5,7 +5,8 @@ export default class Form extends Component {
 
     constructor(props) {
         super(props);
-        this.props = props;
+        const {summ, rate, accruals, periods, accuracy} = props;
+        this.state = {summ, rate, accruals, periods, accuracy};
     }
 
     static propTypes = {
@@ -15,20 +16,32 @@ export default class Form extends Component {
         accruals: PropTypes.number.isRequired,
         periods: PropTypes.number.isRequired,
         accuracy: PropTypes.number.isRequired,
-        onChangeInputAction: PropTypes.func.isRequired
+        onUpdateFormAction: PropTypes.func.isRequired
     };
+
+    onChangeInputHandler(e) {
+        const name = e.target.name;
+        const value = Number(e.target.value);
+        const changeInputObj = {[name]: value};
+        this.setState({
+            ...this.state,
+            changeInputObj
+        });
+        this.props.onUpdateFormAction(changeInputObj);
+    }
 
     render() {
 
-        const {summ, rate, accruals, periods, accuracy, onChangeInputAction} = this.props;
+        const {summ, rate, accruals, periods, accuracy} = this.state;
+        const onChangeInputHandler = this.onChangeInputHandler.bind(this);
 
         return (
             <form className="calculator__form">
-                <label>Сумма: <input type="number" min="0" step="0.01" name="summ" defaultValue={summ} onChange={ (e) => onChangeInputAction(e) } placeholder="Сумма"/></label>
-                <label>Ставка, %: <input type="number" min="0" step="0.01" name="rate" defaultValue={rate} onChange={ (e) => onChangeInputAction(e) } placeholder="Ставка" /></label>
-                <label>Начислений: <input type="number" min="0" name="accruals" defaultValue={accruals} onChange={ (e) => onChangeInputAction(e) } placeholder="Начислений" /></label>
-                <label>Периодов: <input type="number" min="0" max="5" name="periods" defaultValue={periods} onChange={ (e) => onChangeInputAction(e) } placeholder="Периодов" /></label>
-                <label>Знаков после запятой: <input type="range" min="0" max="5" name="accuracy" defaultValue={accuracy} onChange={ (e) => onChangeInputAction(e) } placeholder="Знаков после запятой" /></label>
+                <label>Сумма: <input type="number" min="0" step="0.01" name="summ" defaultValue={summ} onChange={ onChangeInputHandler } placeholder="Сумма"/></label>
+                <label>Ставка, %: <input type="number" min="0" step="0.01" name="rate" defaultValue={rate} onChange={ onChangeInputHandler } placeholder="Ставка" /></label>
+                <label>Начислений: <input type="number" min="0" name="accruals" defaultValue={accruals} onChange={ onChangeInputHandler } placeholder="Начислений" /></label>
+                <label>Периодов: <input type="number" min="0" max="5" name="periods" defaultValue={periods} onChange={ onChangeInputHandler } placeholder="Периодов" /></label>
+                <label>Знаков после запятой: <input type="range" min="0" max="5" name="accuracy" defaultValue={accuracy} onChange={ onChangeInputHandler } placeholder="Знаков после запятой" /></label>
             </form>
         );
     }

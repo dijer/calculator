@@ -11,37 +11,17 @@ const initialState = {
 export default function Calculator(state=initialState, action) {
     
     switch (action.type) {
-        case CalculatorActionTypes.CHANGE_SUMM:
+
+        case CalculatorActionTypes.UPDATE_FORM:
+            const value = action.value;
             return {
                 ...state,
-                summ: action.value
+                ...value
             };
         
-        case CalculatorActionTypes.CHANGE_RATE:
-            return {
-                ...state,
-                rate: action.value
-            };
-        
-        case CalculatorActionTypes.CHANGE_ACCRUALS:
-            return {
-                ...state,
-                accruals: action.value
-            };
-        
-        case CalculatorActionTypes.CHANGE_PERIODS:
-            return {
-                ...state,
-                periods: action.value
-            };
-        
-        case CalculatorActionTypes.CHANGE_ACCURACY:
-            return {
-                ...state,
-                accuracy: action.value
-            };
         
         default:
             return state;
+        
     }
 }

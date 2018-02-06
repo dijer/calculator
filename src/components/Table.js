@@ -25,7 +25,7 @@ export default class Table extends Component {
         for (let i = 0; i < rows; i++) {
             let counter = i + 1;
             let accruedSumm = summ * Math.pow((1 + (rate / 100) / accruals ),  counter);
-            Rows.push(<TableRow key={counter} counter={counter} summ={accruedSumm.toFixed(accuracy)} />);
+            Rows.push(<TableRow key={counter} counter={counter} summ={accruedSumm} accuracy={accuracy} />);
         }
 
         return (

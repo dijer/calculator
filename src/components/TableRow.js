@@ -6,7 +6,7 @@ const TableTr = props => {
     return (
         <tr>
             <td>{props.counter}</td>
-            <td>{props.summ}</td>
+            <td>{props.summ.toFixed(props.accuracy)}</td>
         </tr>
     );
 
@@ -14,7 +14,8 @@ const TableTr = props => {
 
 TableTr.propTypes = {
     counter: PropTypes.number.isRequired,
-    summ: PropTypes.string.isRequired
+    summ: PropTypes.number.isRequired,
+    accuracy: PropTypes.number.isRequired
 }
 
 export default TableTr;

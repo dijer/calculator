@@ -26,11 +26,12 @@ class Calculator extends Component {
   };
 
   render() {
-    const {dispatch, ...tableProps} = this.props;
+    const {dispatch, summ, rate, accruals, periods, accuracy} = this.props;
 
-    const onChangeInputAction = bindActionCreators(CalculatorActionCreators.onChangeInputAction, dispatch);
+    const onUpdateFormAction = bindActionCreators(CalculatorActionCreators.onUpdateFormAction, dispatch);
 
-    const formProps = {...this.props, onChangeInputAction};
+    const formProps = {dispatch, summ, rate, accruals, periods, accuracy, onUpdateFormAction};
+    const tableProps = {summ, rate, accruals, periods, accuracy};
     
     return (
       <div className="calculator">
