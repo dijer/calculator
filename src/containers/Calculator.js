@@ -31,14 +31,13 @@ class Calculator extends Component {
     const onUpdateFormAction = bindActionCreators(CalculatorActionCreators.onUpdateFormAction, dispatch);
 
     const formProps = {dispatch, summ, rate, accruals, periods, accuracy, onUpdateFormAction};
-    const tableProps = {summ, rate, accruals, periods, accuracy};
     
     return (
       <div className="calculator">
         <Form
           {...formProps}
         />
-        <Table {...tableProps} />
+        <Table />
       </div>
     );
   }

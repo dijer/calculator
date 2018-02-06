@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import TableRow from './TableRow';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class Table extends Component {
+class Table extends Component {
 
     constructor(props) {
         super(props);
@@ -10,6 +11,7 @@ export default class Table extends Component {
     }
 
     static propTypes = {
+        dispatch: PropTypes.func.isRequired,
         summ: PropTypes.number.isRequired,
         rate: PropTypes.number.isRequired,
         accruals: PropTypes.number.isRequired,
@@ -44,3 +46,7 @@ export default class Table extends Component {
     }
 
 }
+
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(Table);
