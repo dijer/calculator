@@ -23,15 +23,14 @@ export default class Form extends Component {
     render() {
 
         const {summ, rate, accruals, periods, accuracy} = this.props;
-        const onChangeInputHandler = this.onChangeInputHandler.bind(this);
-
+ 
         return (
             <form className="calculator__form">
-                <label>Сумма: <input type="number" min="0" step="0.01" name="summ" defaultValue={summ} onChange={ onChangeInputHandler } placeholder="Сумма"/></label>
-                <label>Ставка, %: <input type="number" min="0" step="0.01" name="rate" defaultValue={rate} onChange={ onChangeInputHandler } placeholder="Ставка" /></label>
-                <label>Начислений: <input type="number" min="0" name="accruals" defaultValue={accruals} onChange={ onChangeInputHandler } placeholder="Начислений" /></label>
-                <label>Периодов: <input type="number" min="0" max="5" name="periods" defaultValue={periods} onChange={ onChangeInputHandler } placeholder="Периодов" /></label>
-                <label>Знаков после запятой: <input type="range" min="0" max="5" name="accuracy" defaultValue={accuracy} onChange={ onChangeInputHandler } placeholder="Знаков после запятой" /></label>
+                <label>Сумма: <input type="number" min="0" step="0.01" name="summ" defaultValue={summ} onChange={ (e) => {this.onChangeInputHandler(e)} } placeholder="Сумма"/></label>
+                <label>Ставка, %: <input type="number" min="0" step="0.01" name="rate" defaultValue={rate} onChange={ (e) => {this.onChangeInputHandler(e)} } placeholder="Ставка" /></label>
+                <label>Начислений: <input type="number" min="0" name="accruals" defaultValue={accruals} onChange={ (e) => {this.onChangeInputHandler(e)} } placeholder="Начислений" /></label>
+                <label>Периодов: <input type="number" min="0" max="5" name="periods" defaultValue={periods} onChange={ (e) => {this.onChangeInputHandler(e)} } placeholder="Периодов" /></label>
+                <label>Знаков после запятой: <input type="range" min="0" max="5" name="accuracy" defaultValue={accuracy} onChange={ (e) => {this.onChangeInputHandler(e)} } placeholder="Знаков после запятой" /></label>
             </form>
         );
     }
