@@ -5,13 +5,7 @@ import { connect } from 'react-redux';
 
 class Table extends Component {
 
-    constructor(props) {
-        super(props);
-        this.props = props;
-    }
-
     static propTypes = {
-        dispatch: PropTypes.func.isRequired,
         summ: PropTypes.number.isRequired,
         rate: PropTypes.number.isRequired,
         accruals: PropTypes.number.isRequired,
